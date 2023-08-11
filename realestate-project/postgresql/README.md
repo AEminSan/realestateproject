@@ -1,0 +1,1 @@
+PostgreSQL için script aşağıda mevcut, fakat encrypt-decrypt Java tarafından sağlandığı için PostgreSQL ile bunu ilişkilendirilemedi. 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Properties</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>My Properties</h3>
+
+    <a th:href="@{/properties/create-an-advert}">
+        Create an Advert
+    </a>
+
+    <a th:href="@{/business/show}">
+        Return to Business
+    </a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Address</th>
+            <th>Number of Rooms</th>
+            <th>Floor</th>
+            <th>Total Floors in the Building</th>
+            <th>Heating</th>
+            <th>Size</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempProperty : ${properties}">
+            <td th:text="${tempProperty.type}" />
+            <td th:text="${tempProperty.address}" />
+            <td th:text="${tempProperty.numberOfRooms}" />
+            <td th:text="${tempProperty.floor}" />
+            <td th:text="${tempProperty.totalFloors}" />
+            <td th:text="${tempProperty.heating}" />
+            <td th:text="${tempProperty.size}" />
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+</div>
+</body>
+</html>

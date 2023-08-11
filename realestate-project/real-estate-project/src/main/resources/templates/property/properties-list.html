@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Properties</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>Properties List</h3>
+
+    <a th:href="@{/}">
+        Home
+    </a>
+
+    <form th:action="@{/properties/list-by-search}">
+        <label for="type">Property Type:</label>
+        <select id="type" th:name="type" required="false">
+            <option value="house">House</option>
+            <option value="apartment">Apartment</option>
+            <option value="land">Land</option>
+            <option value="office">Office</option>
+        </select>
+
+        <label for="no_of_rooms">Number of Rooms:</label>
+        <input id="no_of_rooms" type="number" th:name="number_of_rooms" required="false"/>
+
+        <label for="floor">Floor:</label>
+        <input id="floor" type="number" th:name="floor" required="false"/>
+
+        <label for="heating">Heating:</label>
+        <select id="heating" th:name="heating" required="false">
+            <option value="none">None</option>
+            <option value="individual">Individual</option>
+            <option value="central">Central</option>
+        </select>
+
+        <label for="size">Size:</label>
+        <input id="size" type="number" th:name="size" required="false"/>
+
+        <input type="submit" value="Search"/>
+    </form>
+
+    <hr>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Address</th>
+            <th>Number of Rooms</th>
+            <th>Floor</th>
+            <th>Total Floors in the Building</th>
+            <th>Heating</th>
+            <th>Size</th>
+            <th>Contact</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempProperty : ${properties}">
+            <td th:text="${tempProperty.type}" />
+            <td th:text="${tempProperty.address}" />
+            <td th:text="${tempProperty.numberOfRooms}" />
+            <td th:text="${tempProperty.floor}" />
+            <td th:text="${tempProperty.totalFloors}" />
+            <td th:text="${tempProperty.heating}" />
+            <td th:text="${tempProperty.size}" />
+            <td>
+                <a th:href="@{/business/contact(userId=${tempProperty.userId})}">
+                    Business Information
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

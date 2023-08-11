@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Registration Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        ul {
+            color: red;
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+<h2>New User Registration</h2>
+<!-- Registration Form -->
+<form action="#" th:action="@{/register/processRegistrationForm}" th:object="${webUser}" method="POST">
+
+    <div th:if="${param.registrationError}">
+        <span th:text="${param.registrationError}"></span>
+    </div>
+
+    <!-- User name -->
+    <input type="text" th:field="*{userName}" placeholder="Username (*)">
+
+    <div th:if="${#fields.hasErrors('userName')}">
+        <ul>
+            <li th:each="err : ${#fields.errors('userName')}" th:text="'User name ' + ${err}"></li>
+        </ul>
+    </div>
+
+    <!-- Password -->
+    <input type="password" th:field="*{password}" placeholder="Password (*)">
+
+    <div th:if="${#fields.hasErrors('password')}">
+        <ul>
+            <li th:each="err : ${#fields.errors('password')}" th:text="'Password ' + ${err}"></li>
+        </ul>
+    </div>
+
+    <!-- First Name -->
+    <input type="text" th:field="*{firstName}" placeholder="First name (*)">
+
+    <div th:if="${#fields.hasErrors('firstName')}">
+        <ul>
+            <li th:each="err : ${#fields.errors('firstName')}" th:text="'First name ' + ${err}"></li>
+        </ul>
+    </div>
+
+    <!-- Last Name -->
+    <input type="text" th:field="*{lastName}" placeholder="Last name (*)">
+
+    <div th:if="${#fields.hasErrors('lastName')}">
+        <ul>
+            <li th:each="err : ${#fields.errors('lastName')}" th:text="'Last name ' + ${err}"></li>
+        </ul>
+    </div>
+
+    <!-- Email -->
+    <input type="text" th:field="*{email}" placeholder="Email (*)">
+
+    <div th:if="${#fields.hasErrors('email')}">
+        <ul>
+            <li th:each="err : ${#fields.errors('email')}" th:text="'Email ' + ${err}"></li>
+        </ul>
+    </div>
+
+    <button type="submit">Register</button>
+
+</form>
+</body>
+
+</html>

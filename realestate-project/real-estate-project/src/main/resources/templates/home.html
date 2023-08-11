@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Home Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .user-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .action-link {
+            display: block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .action-link:hover {
+            background-color: #0056b3;
+        }
+
+        .logout-btn {
+            background-color: transparent;
+            border: 2px solid #007bff;
+            color: #007bff;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="header">
+        <h2>Welcome to the Home Page!</h2>
+    </div>
+    <div class="user-info">
+        <p>User: <span sec:authentication="principal.username"></span></p>
+    </div>
+    <div class="action-links">
+        <a th:href="@{/business/register}" class="action-link">Register Business</a>
+        <a th:href="@{/business/show}" class="action-link">My Business</a>
+        <a th:href="@{/properties/list}" class="action-link">Search for Properties</a>
+    </div>
+    <div class="logout">
+        <form action="#" th:action="@{/logout}" method="POST">
+            <input type="submit" value="Logout" class="logout-btn" />
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

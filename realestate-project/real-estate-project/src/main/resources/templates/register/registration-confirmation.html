@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Registration Confirmation</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f4f4;
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #fff;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+		}
+		h2 {
+			color: #007bff;
+		}
+		ul {
+			list-style-type: none;
+			padding-left: 0;
+		}
+		li {
+			margin-bottom: 10px;
+		}
+		hr {
+			margin: 20px 0;
+			border: 0;
+			border-top: 1px solid #ccc;
+		}
+		a {
+			display: inline-block;
+			margin-top: 10px;
+			color: #007bff;
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+
+<div class="container">
+	<h2>User registered successfully!</h2>
+	<!-- display first name, last name, and email -->
+	<ul>
+		<li th:text="'User name: ' + ${webUser.userName}"></li>
+		<li th:text="'First name: ' + ${webUser.firstName}"></li>
+		<li th:text="'Last name: ' + ${webUser.lastName}"></li>
+		<li th:text="'Email: ' + ${webUser.email}"></li>
+	</ul>
+	<hr>
+	<a th:href="@{/showMyLoginPage}">Login with new user name</a>
+</div>
+
+</body>
+
+</html>

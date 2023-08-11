@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org"
+      xmlns:sec="https://thymeleaf.org/extras/spring-security5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create An Advert</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .container p {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .container label, .container select, .container input[type="number"], .container input[type="submit"] {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .container input[type="text"], .container input[type="number"], .container select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .container input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <p>Create An Advert</p>
+    <form action="#" th:action="@{/properties/save}" th:object="${property}" method="post">
+        <label for="type">Property Type:</label>
+        <select id="type" name="type" th:field="*{type}">
+            <option value="house">House</option>
+            <option value="apartment">Apartment</option>
+            <option value="land">Land</option>
+            <option value="office">Office</option>
+        </select>
+
+        <br>
+
+        <label for="size">Size (Square Meter):</label>
+        <input id="size" type="number" th:field="*{size}" placeholder="Square Meter">
+
+        <br>
+
+        <label for="address">Address:</label>
+        <input id="address" type="text" th:field="*{address}" placeholder="Address">
+
+        <br>
+
+        <label for="rooms">Rooms:</label>
+        <input id="rooms" type="number" th:field="*{numberOfRooms}" placeholder="Number of Rooms">
+
+        <br>
+
+        <label for="floor">Floor:</label>
+        <input id="floor" type="number" th:field="*{floor}" placeholder="Floor">
+
+        <br>
+
+        <label for="total_floors">Total Floors in the Building:</label>
+        <input id="total_floors" type="number" th:field="*{totalFloors}" placeholder="Total Floors">
+
+        <br>
+
+        <label for="heating">Heating:</label>
+        <select id="heating" name="heating" th:field="*{heating}">
+            <option value="none">None</option>
+            <option value="individual">Individual</option>
+            <option value="Central">Central</option>
+        </select>
+
+        <br>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
